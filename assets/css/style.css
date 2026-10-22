@@ -169,3 +169,20 @@ nav a:hover { color: var(--pink-ink); background: var(--pink-soft); }
 .site-footer { position: relative; z-index: 2; text-align: center; color: var(--muted); font-size: .82rem; padding: 40px 0 48px; background: var(--bg); }
 .site-footer p { margin: 2px 0; }
 .small { font-size: .78rem; }
+
+/* 마우스를 따라다니는 동그라미 */
+.cursor-dot {
+  position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+  width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: var(--pink); opacity: 0;
+  transition: width .3s var(--spring), height .3s var(--spring), margin .3s var(--spring),
+              background .25s, border-color .25s, opacity .3s;
+  border: 1.5px solid transparent;
+}
+.cursor-dot.on { opacity: .85; }
+.cursor-dot.big {
+  width: 40px; height: 40px; margin: -20px 0 0 -20px;
+  background: rgba(244, 166, 187, .12); border-color: var(--pink);
+}
+.cursor-dot.down { width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; }
+.cursor-dot.big.down { width: 32px; height: 32px; margin: -16px 0 0 -16px; }
