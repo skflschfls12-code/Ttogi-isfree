@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  {% include head.html %}
+</head>
+<body class="post-page">
+  {% assign hero = page.image | default: '/assets/images/sample.svg' %}
+  <a class="float-home" href="{{ '/' | relative_url }}" aria-label="공략 목록으로">← 목록</a>
+
+  <section class="hero" id="hero">
+    <img class="hero-img" id="heroImg" src="{{ hero | relative_url }}" alt="{{ page.dungeon | default: page.title }}">
+    <a class="scroll-hint" href="#guide" aria-label="아래로 스크롤">
+      <span>scroll</span>
+      <span class="bubble"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+    </a>
+  </section>
+
+  <article class="guide" id="guide">
+    <header class="guide-head reveal">
+      {% if page.dungeon %}<p class="eyebrow">{{ page.dungeon }}</p>{% endif %}
+      <h1>{{ page.title }}</h1>
+      <dl class="meta">
+        {% if page.difficulty %}<div><dt>난이도</dt><dd><span class="badge diff-{{ page.difficulty }}">{{ page.difficulty }}</span></dd></div>{% endif %}
+        {% if page.party %}<div><dt>인원</dt><dd>{{ page.party }}</dd></div>{% endif %}
+        {% if page.level %}<div><dt>스펙</dt><dd>{{ page.level }}</dd></div>{% endif %}
+        <div><dt>작성</dt><dd>{{ page.date | date: '%Y.%m.%d' }}</dd></div>
+      </dl>
+      {% if page.tags.size > 0 %}
+      <ul class="tags">{% for t in page.tags %}<li>#{{ t }}</li>{% endfor %}</ul>
+      {% endif %}
+    </header>
+    <div class="prose">
+      {{ content }}
+    </div>
+    <a class="back-btn reveal" href="{{ '/' | relative_url }}">다른 공략 보기</a>
+  </article>
+
+  {% include footer.html %}
+  <script src="{{ '/assets/js/post.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+---
+layout: default
+---
+<section class="intro">
+  <p class="intro-deco">Mabinogi Dungeon Notes</p>
+  <h1>마비노기 던전 <span class="hl">공략집</span></h1>
+  <p>{{ site.description }}</p>
+  <label class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="던전 이름, 보스, 태그로 검색" aria-label="검색">
+  </label>
+</section>
+
+<ul class="cards" id="list">
+  {% for post in site.posts %}
+  {% assign label = post.card_text | default: post.dungeon | default: post.title %}
+  <li class="card"
+      data-text="{{ post.title }} {{ post.dungeon }} {{ post.card_text }} {{ post.tags | join: ' ' }}">
+    <a href="{{ post.url | relative_url }}" aria-label="{{ post.title }}">
+      <img src="{{ post.image | default: '/assets/images/sample.svg' | relative_url }}" alt="" loading="lazy">
+      <span class="card-label"><span class="card-name">{{ label }}</span><span class="card-go">보러 가기 →</span></span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<p class="empty" id="empty" hidden>앗, 찾는 공략이 없어요!</p>
+
+<script src="{{ '/assets/js/filter.js' | relative_url }}"></script>
