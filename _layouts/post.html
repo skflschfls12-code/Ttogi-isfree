@@ -17,12 +17,12 @@
 
   <article class="guide" id="guide">
     <header class="guide-head reveal">
-      {% if page.dungeon %}<p class="eyebrow">{{ page.dungeon }}</p>{% endif %}
+      {% if page.dungeon and page.dungeon.size > 0 %}<p class="eyebrow">{{ page.dungeon }}</p>{% endif %}
       <h1>{{ page.title }}</h1>
       <dl class="meta">
-        {% if page.difficulty %}<div><dt>난이도</dt><dd><span class="badge diff-{{ page.difficulty }}">{{ page.difficulty }}</span></dd></div>{% endif %}
-        {% if page.party %}<div><dt>인원</dt><dd>{{ page.party }}</dd></div>{% endif %}
-        {% if page.level %}<div><dt>스펙</dt><dd>{{ page.level }}</dd></div>{% endif %}
+        {% if page.difficulty and page.difficulty.size > 0 %}<div><dt>난이도</dt><dd><span class="badge diff-{{ page.difficulty }}">{{ page.difficulty }}</span></dd></div>{% endif %}
+        {% if page.party and page.party.size > 0 %}<div><dt>인원</dt><dd>{{ page.party }}</dd></div>{% endif %}
+        {% if page.level and page.level.size > 0 %}<div><dt>스펙</dt><dd>{{ page.level }}</dd></div>{% endif %}
         <div><dt>작성</dt><dd>{{ page.date | date: '%Y.%m.%d' }}</dd></div>
       </dl>
       {% if page.tags.size > 0 %}
