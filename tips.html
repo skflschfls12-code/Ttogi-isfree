@@ -1,0 +1,38 @@
+---
+layout: default
+title: 팁
+permalink: /tips/
+---
+<section class="intro">
+  <p class="intro-deco">Little Tips</p>
+  <h1>알아 두면 좋은 <span class="hl">팁</span></h1>
+  <p>몹 모으는 법, 디버프, 그 밖의 소소한 꿀팁</p>
+  <label class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="팁 제목, 내용, 태그로 검색" aria-label="검색">
+  </label>
+</section>
+
+{% assign tips = site.posts | where: "type", "tip" %}
+<ul class="tips" id="list">
+  {% for post in tips %}
+  <li data-text="{{ post.title }} {{ post.kind }} {{ post.summary }} {{ post.tags | join: ' ' }}">
+    <a class="tip" href="{{ post.url | relative_url }}">
+      {% if post.image and post.image.size > 0 %}
+      <img class="tip-thumb" src="{{ post.image | relative_url }}" alt="" loading="lazy">
+      {% else %}
+      <span class="tip-thumb tip-thumb-plain" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>
+      {% endif %}
+      <span class="tip-body">
+        {% if post.kind and post.kind.size > 0 %}<span class="tip-kind">{{ post.kind }}</span>{% endif %}
+        <span class="tip-title">{{ post.title }}</span>
+        {% if post.summary and post.summary.size > 0 %}<span class="tip-summary">{{ post.summary }}</span>{% endif %}
+      </span>
+      <span class="tip-arrow" aria-hidden="true">→</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+<p class="empty" id="empty" hidden>{% if tips.size == 0 %}아직 올라온 팁이 없어요. 곧 채워질 거예요!{% else %}앗, 찾는 팁이 없어요!{% endif %}</p>
+
+<script src="{{ '/assets/js/filter.js' | relative_url }}"></script>

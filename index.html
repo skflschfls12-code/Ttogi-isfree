@@ -12,7 +12,8 @@ layout: default
 </section>
 
 <ul class="cards" id="list">
-  {% for post in site.posts %}
+  {% assign dungeons = site.posts | where_exp: "p", "p.type != 'tip'" %}
+  {% for post in dungeons %}
   {% assign label = post.card_text | default: post.dungeon | default: post.title %}
   <li class="card"
       data-text="{{ post.title }} {{ post.dungeon }} {{ post.card_text }} {{ post.tags | join: ' ' }}">
