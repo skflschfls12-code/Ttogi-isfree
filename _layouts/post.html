@@ -4,20 +4,27 @@
   {% include head.html %}
 </head>
 <body class="post-page">
-  {% assign hero = page.image | default: '/assets/images/sample.svg' %}
-  <a class="float-home" href="{{ '/' | relative_url }}" aria-label="공략 목록으로">← 목록</a>
+  {% if page.type == 'tip' %}{% assign back = '/tips/' %}{% else %}{% assign back = '/' %}{% endif %}
+  <a class="float-home" href="{{ back | relative_url }}" aria-label="목록으로">← 목록</a>
 
+  {% if page.image and page.image.size > 0 %}
   <section class="hero" id="hero">
-    <img class="hero-img" id="heroImg" src="{{ hero | relative_url }}" alt="{{ page.dungeon | default: page.title }}">
+    <img class="hero-img" id="heroImg" src="{{ page.image | relative_url }}" alt="{{ page.dungeon | default: page.title }}">
     <a class="scroll-hint" href="#guide" aria-label="아래로 스크롤">
       <span>scroll</span>
       <span class="bubble"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
     </a>
   </section>
+  {% else %}
+  <section class="hero hero-plain" aria-hidden="true">
+    <p class="hero-plain-deco">{% if page.type == 'tip' %}Little Tips{% else %}Dungeon Notes{% endif %}</p>
+  </section>
+  {% endif %}
 
   <article class="guide" id="guide">
     <header class="guide-head reveal">
-      {% if page.dungeon and page.dungeon.size > 0 %}<p class="eyebrow">{{ page.dungeon }}</p>{% endif %}
+      {% if page.dungeon and page.dungeon.size > 0 %}<p class="eyebrow">{{ page.dungeon }}</p>
+      {% elsif page.kind and page.kind.size > 0 %}<p class="eyebrow">{{ page.kind }}</p>{% endif %}
       <h1>{{ page.title }}</h1>
       <dl class="meta">
         {% if page.difficulty and page.difficulty.size > 0 %}<div><dt>난이도</dt><dd><span class="badge diff-{{ page.difficulty }}">{{ page.difficulty }}</span></dd></div>{% endif %}
@@ -32,7 +39,7 @@
     <div class="prose">
       {{ content }}
     </div>
-    <a class="back-btn reveal" href="{{ '/' | relative_url }}">다른 공략 보기</a>
+    <a class="back-btn reveal" href="{{ back | relative_url }}">{% if page.type == 'tip' %}다른 팁 보기{% else %}다른 공략 보기{% endif %}</a>
   </article>
 
   {% include footer.html %}

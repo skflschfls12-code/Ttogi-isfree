@@ -1,6 +1,6 @@
 (function () {
   var q = document.getElementById('q');
-  var cards = document.querySelectorAll('#list .card');
+  var cards = document.querySelectorAll('#list > li');
   var empty = document.getElementById('empty');
 
   function apply() {

@@ -42,6 +42,7 @@ img { max-width: 100%; height: auto; }
 nav { display: flex; gap: 4px; }
 nav a { color: var(--muted); text-decoration: none; font-size: .92rem; padding: 4px 14px; border-radius: 999px; transition: color .2s, background .2s; }
 nav a:hover { color: var(--pink-ink); background: var(--pink-soft); }
+nav a.on { color: var(--pink-ink); background: var(--pink-soft); font-weight: 600; }
 
 /* 메인 */
 .intro { text-align: center; padding: 64px 0 44px; }
@@ -195,3 +196,32 @@ nav a:hover { color: var(--pink-ink); background: var(--pink-soft); }
 }
 .cursor-dot.down { width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; }
 .cursor-dot.big.down { width: 32px; height: 32px; margin: -16px 0 0 -16px; }
+
+/* 팁 목록 */
+.tips { list-style: none; padding: 0; margin: 0 auto; max-width: 760px; display: flex; flex-direction: column; gap: 14px; }
+.tip {
+  display: flex; align-items: center; gap: 18px; padding: 14px 22px 14px 14px;
+  background: var(--surface); border-radius: 24px; box-shadow: var(--shadow);
+  color: inherit; text-decoration: none; transition: transform .4s var(--spring), box-shadow .3s;
+}
+.tip:hover, .tip:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(244, 166, 187, .32); outline: none; }
+.tip-thumb { flex: none; width: 76px; height: 76px; border-radius: 18px; object-fit: cover; }
+.tip-thumb-plain { display: grid; place-items: center; background: var(--pink-soft); }
+.tip-thumb-plain svg { width: 30px; height: 30px; fill: none; stroke: var(--pink-ink); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+li:nth-child(4n+2) .tip-thumb-plain { background: var(--lav-soft); }
+li:nth-child(4n+2) .tip-thumb-plain svg { stroke: var(--lav-ink); }
+li:nth-child(4n+3) .tip-thumb-plain { background: var(--mint-soft); }
+li:nth-child(4n+3) .tip-thumb-plain svg { stroke: var(--mint-ink); }
+li:nth-child(4n+4) .tip-thumb-plain { background: var(--butter-soft); }
+li:nth-child(4n+4) .tip-thumb-plain svg { stroke: var(--butter-ink); }
+.tip-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.tip-kind { align-self: flex-start; font-family: var(--round); font-size: .78rem; color: var(--pink-ink); background: var(--pink-soft); padding: 1px 10px; border-radius: 999px; margin-bottom: 4px; }
+.tip-title { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.4; }
+.tip-summary { font-family: var(--round); font-size: .9rem; color: var(--muted); line-height: 1.5; }
+.tip-arrow { flex: none; color: var(--pink); font-size: 1.2rem; transition: transform .35s var(--spring); }
+.tip:hover .tip-arrow { transform: translateX(4px); }
+@media (max-width: 480px) { .tip { gap: 14px; padding-right: 16px; } .tip-thumb { width: 60px; height: 60px; border-radius: 14px; } }
+
+/* 대표 사진이 없는 글: 짧은 파스텔 머리 */
+.hero-plain { height: 42vh; min-height: 240px; display: grid; place-items: center; background: linear-gradient(135deg, var(--pink-soft), var(--lav-soft)); }
+.hero-plain-deco { font-family: var(--serif); font-style: italic; color: var(--pink-ink); font-size: clamp(1.6rem, 5vw, 2.4rem); margin: 0 0 40px; }

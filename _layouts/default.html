@@ -10,8 +10,9 @@
         {{ site.title }}
       </a>
       <nav>
-        <a href="{{ '/' | relative_url }}">공략</a>
-        <a href="{{ '/about/' | relative_url }}">소개</a>
+        <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="on" aria-current="page"{% endif %}>던전</a>
+        <a href="{{ '/tips/' | relative_url }}"{% if page.url == '/tips/' %} class="on" aria-current="page"{% endif %}>팁</a>
+        <a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} class="on" aria-current="page"{% endif %}>소개</a>
       </nav>
     </div>
   </header>
